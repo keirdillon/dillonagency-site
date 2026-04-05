@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Dillon Agency</title>
+  <meta name="description" content="Start a conversation with Dillon Agency. Book a call or send a message.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="walnut-bar"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-mark">Dillon <span>Agency</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/approach">Approach</a></li>
+        <li><a href="/background">Background</a></li>
+        <li><a href="/results">Results</a></li>
+        <li><a href="/contact" class="active">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-label">Contact</div>
+    <h1>Let's <em>talk.</em></h1>
+    <p class="page-hero-sub">
+      If the founder remains the engine, scale remains constrained.
+      Start the conversation about changing that.
+    </p>
+  </section>
+
+  <div class="stitch"></div>
+
+  <section class="section fade-in">
+    <div class="contact-grid">
+      <!-- FORM -->
+      <div>
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="company">Company</label>
+          <input class="form-input" type="text" id="company" name="company" placeholder="Your firm or organization">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your firm and what you are working on."></textarea>
+        </div>
+        <button class="btn-primary" type="submit" style="border:none; cursor:pointer;">
+          Send Message
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div>
+        <div class="contact-side-title">Book a Conversation</div>
+        <div class="contact-side-body">
+          If you prefer to start with a conversation, book a 30-minute call directly.
+          We will discuss your firm, your competitive landscape, and whether there is a fit.
+        </div>
+        <a href="#" class="btn-primary" style="margin-bottom:48px; display:inline-flex;">
+          Book a Call
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <div class="contact-side-title" style="margin-top:48px;">Connect</div>
+        <a href="https://linkedin.com/in/keirdillon" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://keirdillon.com" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          keirdillon.com
+        </a>
+        <a href="mailto:keir@dillonagency.co" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          keir@dillonagency.co
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">&copy; 2026 Dillon Agency. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/keirdillon" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://keirdillon.com" target="_blank" rel="noopener">Keir Dillon</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
