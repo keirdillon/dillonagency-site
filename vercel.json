@@ -8,58 +8,151 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.dillonagency.co" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.dillonagency.co"
+        }
+      ],
       "destination": "https://dillonagency.co/:path*",
       "permanent": true
     },
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/background", "destination": "/about/", "permanent": true },
-    { "source": "/background/", "destination": "/about/", "permanent": true },
-    { "source": "/background.html", "destination": "/about/", "permanent": true },
-    { "source": "/results", "destination": "/selected-work/", "permanent": true },
-    { "source": "/results/", "destination": "/selected-work/", "permanent": true },
-    { "source": "/results.html", "destination": "/selected-work/", "permanent": true },
-    { "source": "/approach.html", "destination": "/approach/", "permanent": true },
-    { "source": "/contact.html", "destination": "/contact/", "permanent": true },
-    { "source": "/work", "destination": "/selected-work/", "permanent": true },
-    { "source": "/services.html", "destination": "/services/", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/background",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/background/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/background.html",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/results",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/results/",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/results.html",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/approach.html",
+      "destination": "/approach/",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/work/",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services/",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/assets/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).avif",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).webp",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).jpg",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/assets/(.*).png",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/assets/style.css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     },
     {
       "source": "/assets/site.js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }

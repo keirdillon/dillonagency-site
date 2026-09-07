@@ -34,7 +34,12 @@ scripts=(['tools.js'] if SITE['kind']=='personal' else [])+['site.js']
 js='\n'.join((ROOT/'src'/n).read_text() for n in scripts)
 def file_path(p):return p['path'].strip('/')+'/index.html' if p['path']!='/' else 'index.html'
 def root_prefix(p):return posixpath.relpath('.',posixpath.dirname(file_path(p)) or '.')
-def href(id,current=None):return '#'+id if current is None else posixpath.relpath(file_path(byid[id]),posixpath.dirname(file_path(current)) or '.')
+def href(id,current=None):
+    # Directory form, so internal links match the canonicals exactly and never
+    # bounce through the host's index.html -> trailing-slash redirect.
+    if current is None:return '#'+id
+    rel=posixpath.relpath(file_path(byid[id]),posixpath.dirname(file_path(current)) or '.')
+    return rel[:-len('index.html')] or './'
 def peer_tokens(text):return re.sub(r'\{\{peer:(/[a-z0-9/_-]*)\}\}',lambda m:PEER+m.group(1),text)
 def nav(current=None):
     links=''.join('<a data-nav="'+id+'" href="'+href(id,current)+'"'+(' aria-current="page"' if current and current['id']==id else '')+'>'+label+'</a>' for id,label in SITE['nav'])
