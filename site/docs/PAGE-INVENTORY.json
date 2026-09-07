@@ -1,0 +1,68 @@
+[
+  {
+    "id": "home",
+    "path": "/",
+    "title": "Marketing leadership for wealth management firms",
+    "description": "Dillon Agency, led by Keir Dillon, connects brand strategy, fractional CMO leadership, recruiting, and advisor marketing for wealth management firms."
+  },
+  {
+    "id": "services",
+    "path": "/services/",
+    "title": "Services for wealth management firms",
+    "description": "Explore Dillon Agency\u2019s fractional CMO, brand and recruiting strategy, advisor marketing, and practical marketing systems services."
+  },
+  {
+    "id": "cmo",
+    "path": "/fractional-cmo/",
+    "title": "Fractional CMO for wealth management firms",
+    "description": "Work with Keir Dillon through Dillon Agency for embedded marketing leadership across brand, recruiting, team direction, and advisor support."
+  },
+  {
+    "id": "brand",
+    "path": "/brand-strategy/",
+    "title": "Brand and advisor recruiting strategy",
+    "description": "Dillon Agency helps wealth management firms clarify their position, develop a credible recruiting narrative, and carry the message into the experience."
+  },
+  {
+    "id": "advisors",
+    "path": "/advisor-marketing/",
+    "title": "Advisor marketing support for wealth management firms",
+    "description": "Build a practical advisor marketing support model with Dillon Agency: positioning, presence, content, review workflows, and firm-level ownership."
+  },
+  {
+    "id": "systems",
+    "path": "/marketing-systems/",
+    "title": "Marketing systems and practical AI workflows",
+    "description": "Dillon Agency helps marketing teams map responsibilities, scope AI workflow pilots, retain human review, and assess results against actual delivery needs."
+  },
+  {
+    "id": "approach",
+    "path": "/approach/",
+    "title": "How Dillon Agency works with firms",
+    "description": "A clear engagement approach: understand the firm, agree priorities and responsibilities, lead delivery, and review evidence with leadership."
+  },
+  {
+    "id": "work",
+    "path": "/selected-work/",
+    "title": "Selected work | Dillon Agency",
+    "description": "Explore the scope of Keir Dillon\u2019s marketing leadership at Coastal Wealth and the responsibilities connecting firm strategy with advisor support."
+  },
+  {
+    "id": "coastal",
+    "path": "/selected-work/coastal-wealth/",
+    "title": "Coastal Wealth | Marketing leadership scope",
+    "description": "Keir Dillon\u2019s current Coastal Wealth scope: brand strategy, marketing team leadership, recruiting strategy and implementation, and advisor marketing support."
+  },
+  {
+    "id": "about",
+    "path": "/about/",
+    "title": "About Dillon Agency | Led by Keir Dillon",
+    "description": "Dillon Agency is led by Keir Dillon, a founder and fractional CMO bringing brand strategy and implementation leadership to wealth management firms."
+  },
+  {
+    "id": "contact",
+    "path": "/contact/",
+    "title": "Contact Dillon Agency",
+    "description": "Contact Keir Dillon at Dillon Agency to discuss fractional CMO leadership, brand strategy, recruiting, advisor marketing, or a defined project."
+  }
+]

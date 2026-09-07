@@ -1,0 +1,34 @@
+{
+  "brand": "Dillon Agency",
+  "kind": "agency",
+  "domain": "https://dillonagency.co",
+  "peer_brand": "Keir Dillon",
+  "peer_domain": "https://keirdillon.com",
+  "review_origin": "https://dillon-agency-brand-review.keirdillon.chatgpt.site",
+  "peer_review_origin": "https://keir-dillon-brand-review.keirdillon.chatgpt.site",
+  "standalone": "dillon-agency-website.html",
+  "descriptor": "Firm marketing<br>Led by Keir Dillon",
+  "email": "keir@dillonagency.co",
+  "nav": [
+    [
+      "services",
+      "Services"
+    ],
+    [
+      "approach",
+      "How we work"
+    ],
+    [
+      "work",
+      "Selected work"
+    ],
+    [
+      "about",
+      "About"
+    ],
+    [
+      "contact",
+      "Contact"
+    ]
+  ]
+}

@@ -1,0 +1,8 @@
+Existing or candidate path,New destination or treatment,Integration instruction
+/,/,Replace with approved commercial homepage
+/approach,/approach/,Merge and preserve relevant approach material
+/background,/about/,Merge founder/company context; link full personal biography
+/results,/selected-work/,Preserve substantiated material; distinguish founder history from agency engagements
+/contact,/contact/,Preserve working provider; shared email fallback exists
+/services/ and service pages,New pages,Confirm no collision with old repository routes
+Google verification and existing policies,Retain if present,Copy into final public output or integrate with build

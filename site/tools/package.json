@@ -1,0 +1,8 @@
+{
+  "name": "dillon-agency-asset-tools",
+  "private": true,
+  "type": "module",
+  "description": "Build-time-only asset preparation. Run locally; outputs are committed. Not used by the Vercel build.",
+  "scripts": { "prepare-assets": "node prepare_assets.mjs" },
+  "devDependencies": { "sharp": "^0.35.4", "wawoff2": "^2.0.1" }
+}

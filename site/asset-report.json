@@ -1,0 +1,101 @@
+{
+  "generated": "2026-09-07",
+  "fonts": {
+    "faces": 5,
+    "base64_in_css_bytes": 361844,
+    "woff2_bytes": 108640
+  },
+  "images": [
+    {
+      "key": "advisors-hero",
+      "file": "advisors-hero.png",
+      "master": 2185749,
+      "avifLargest": 111893,
+      "fallback": 99446,
+      "avifTotal": 309397,
+      "webpTotal": 354192,
+      "widths": [
+        480,
+        720,
+        960,
+        1200,
+        1536
+      ]
+    },
+    {
+      "key": "advisor-walking",
+      "file": "advisor-walking.png",
+      "master": 1857883,
+      "avifLargest": 76028,
+      "fallback": 109442,
+      "avifTotal": 198885,
+      "webpTotal": 209666,
+      "widths": [
+        480,
+        720,
+        960,
+        1122
+      ]
+    },
+    {
+      "key": "advisor-community",
+      "file": "advisor-community.png",
+      "master": 2172147,
+      "avifLargest": 105452,
+      "fallback": 94583,
+      "avifTotal": 297730,
+      "webpTotal": 334464,
+      "widths": [
+        480,
+        720,
+        960,
+        1200,
+        1536
+      ]
+    },
+    {
+      "key": "keir-current",
+      "file": "keir-current.jpg",
+      "master": 78972,
+      "avifLargest": 40126,
+      "fallback": 78972,
+      "avifTotal": 91318,
+      "webpTotal": 91952,
+      "widths": [
+        480,
+        720,
+        800
+      ]
+    },
+    {
+      "key": "frends-product",
+      "file": "frends-product.jpg",
+      "master": 515018,
+      "avifLargest": 58779,
+      "fallback": 96692,
+      "avifTotal": 148687,
+      "webpTotal": 177354,
+      "widths": [
+        480,
+        720,
+        960,
+        1128
+      ]
+    },
+    {
+      "key": "open-cans",
+      "file": "open-cans.png",
+      "master": 1832414,
+      "avifLargest": 119281,
+      "fallback": 168427,
+      "avifTotal": 288155,
+      "webpTotal": 346196,
+      "widths": [
+        480,
+        720,
+        960,
+        1164
+      ]
+    }
+  ]
+}
