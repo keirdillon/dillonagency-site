@@ -1,61 +1,96 @@
 # dillonagency.co
 
-Agency conversion site for Dillon Agency. Growth leadership for traditional industries.
+Dillon Agency is the commercial business: fractional CMO leadership, brand and
+recruiting strategy, advisor marketing, marketing systems, and implementation
+for wealth management firms. Led by Keir Dillon.
 
-## Files
+The personal platform — Keir's perspective, full career story, writing, advisor
+tools and community — lives separately at **keirdillon.com**. Both sites carry
+the same Rams design system and link to each other. See
+`site/docs/BRAND-ARCHITECTURE.md` for the content boundary between them.
+
+## Layout
 
 ```
-index.html       Home — positioning, capabilities, pattern, CTA
-approach.html    Approach — methodology, differentiators, audience
-background.html  Background — career arc as proof of pattern (4 chapters)
-results.html     Results — venture outcomes, advisory work, what's being built
-contact.html     Contact — form + Calendly + social links
-style.css        Shared styles (AdvisorOS / Dieter Rams design system)
-main.js          Scroll animations + mobile nav
-vercel.json      Clean URLs, security headers, caching
+site/
+  build.py            Dependency-free static builder (Python 3.9+, no pip/npm)
+  build_vercel.py     Environment-aware adapter used by the Vercel build
+  verify.py           Structural, asset, link, and metadata checks
+  site.json           Domain, peer domain, navigation, contact address
+  src/
+    pages.py          Every page's copy and metadata — the content authority
+    components.py     Photo and contact helpers
+    fonts.css         Generated: @font-face rules pointing at fonts/*.woff2
+    fonts.source.css  Original supplied faces, base64 (kept as the master)
+    style.css         Shared Rams design system   ┐ identical in both
+    visual.css        Editorial layout + imagery  │ brand projects; change
+    brand.css         Brand-architecture edition  ┘ them in both or neither
+    site.js           Menu, standalone navigation, copy-to-clipboard
+    assets/           Image masters — never modified, hash-checked by verify.py
+    assets.json       Master dimensions, provenance, SHA-256
+    derivatives/      Generated: responsive AVIF/WebP/fallback ladders
+    derivatives.json  Generated: srcset ladders and per-image `sizes`
+    fonts/            Generated: WOFF2 faces
+    static/           Copied verbatim into the output (icons, social card,
+                      and the brand marks retained at /assets/images/)
+  tools/              Local-only asset pipeline (Node + sharp). Not run on Vercel.
+  docs/              Internal architecture, route map, handoff. Never served.
+vercel.json           Build config, route redirects, headers, caching
 ```
 
-## Design System
+Only `site/dist/` is served. The source, masters, docs and handoff material stay
+out of the public output by construction.
 
-- Palette: Ivory (#FAF8F0), Cream (#F0EBE0), Cognac (#8C6840), Deep (#1E1C18)
-- Typography: Cormorant Garamond (display) + Inter (body)
-- Components: Walnut top bar, panel-seam grids, leather stitch dividers,
-  chronograph gauge strip, cognac accent reveals
-- Fully responsive with mobile hamburger nav
+## Build
 
-## Deploy to Vercel
+```sh
+cd site
+python3 build.py                                    # review build -> dist/ (noindex)
+python3 build.py --production https://dillonagency.co   # launch build -> dist/ (indexable)
+python3 verify.py                                   # structure, assets, links, metadata
+```
 
-1. Create a new GitHub repo: `dillonagency-site`
-2. Push all files to the `main` branch
-3. Go to vercel.com, click "Add New Project"
-4. Import your GitHub repo
-5. Framework Preset: "Other"
-6. Root Directory: leave as default
-7. Click "Deploy"
-8. In Project Settings > Domains > Add: dillonagency.co
-9. Update your domain DNS:
-   - Add a CNAME record: `@` -> `cname.vercel-dns.com`
-   - Or use Vercel nameservers for full DNS management
-10. SSL is automatic
+The review build also emits `dillon-agency-website.html`, a single self-contained
+file with fonts and images embedded for offline review. Pass `--no-standalone`
+to skip it; the Vercel build always does.
 
-## Cross-linking
+`build_vercel.py` picks the mode from `VERCEL_ENV`: production builds use the
+confirmed domain and are indexable, every other environment stays `noindex,
+nofollow` with a disallow-all `robots.txt`. Nothing needs to change at launch.
 
-- Footer links to keirdillon.com and LinkedIn
-- Background page links to keirdillon.com/story for the personal narrative
-- keirdillon.com should link back to dillonagency.co from the "What I Do Now" section
+Preview a build locally with `python3 -m http.server -d dist 8080`.
 
-## To-do before launch
+## Regenerating assets
 
-- [ ] Add Dillon Agency logo (SVG or transparent PNG from CDN)
-- [ ] Replace favicon
-- [ ] Add OG image for social sharing
-- [ ] Connect contact form backend (Formspree or Vercel serverless function)
-- [ ] Add Calendly URL to "Book a Call" button on contact page
-- [ ] Connect analytics (Plausible or Google Analytics)
-- [ ] Submit sitemap to Google Search Console
-- [ ] Update email address if keir@dillonagency.co is not yet set up
+Fonts, responsive image derivatives, icons and the social card are generated
+once and committed, so the deploy build needs no dependencies. Regenerate them
+only after changing a master or a layout width:
 
-## Local development
+```sh
+cd site/tools && npm install && npm run prepare-assets
+```
 
-Just open any HTML file in a browser. No build tools needed.
-For live reload during development: `npx serve .` (requires Node.js)
+Masters in `src/assets/` are never modified — `verify.py` fails if their hashes
+change. Measured results are recorded in `site/asset-report.json`.
+
+## Temporary launch bridge
+
+`site/launch-bridge.json` holds three links whose real destination is not live
+yet. Dillon Agency launches before KeirDillon.com, so until the personal site
+ships `/about` and `/tools`, those links point at `https://keirdillon.com/` and
+carry a label that matches where the visitor actually lands. `src/pages.py`
+already holds the final href and label; set `"active": false` and rebuild to
+restore them. The build fails if an entry stops matching, so the bridge cannot
+go stale unnoticed.
+
+## Contact
+
+`keir@dillonagency.co` on both sites. The contact page opens the visitor's mail
+client and offers a copy-address fallback and LinkedIn; there is no form backend,
+newsletter, analytics, or payment service in this repository.
+
+## Deployment
+
+GitHub `keirdillon/dillonagency-site` → Vercel project `dillonagency-site` →
+`dillonagency.co` (apex is canonical; `www` redirects to it). Pushing a branch
+creates a preview; merging to `master` releases production.

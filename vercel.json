@@ -1,11 +1,76 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "python3 site/build_vercel.py",
+  "outputDirectory": "site/dist",
   "cleanUrls": true,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "redirects": [
     {
-      "source": "/www.dillonagency.co/:path*",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.dillonagency.co"
+        }
+      ],
       "destination": "https://dillonagency.co/:path*",
-      "statusCode": 301
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/background",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/background/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/background.html",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/results",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/results/",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/results.html",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/approach.html",
+      "destination": "/approach/",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/work/",
+      "destination": "/selected-work/",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services/",
+      "permanent": true
     }
   ],
   "headers": [
@@ -27,7 +92,7 @@
       ]
     },
     {
-      "source": "/style.css",
+      "source": "/assets/fonts/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -36,11 +101,56 @@
       ]
     },
     {
-      "source": "/main.js",
+      "source": "/assets/(.*).avif",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*).webp",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*).jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*).png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/style.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/site.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }

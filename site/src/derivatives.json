@@ -1,0 +1,262 @@
+{
+  "advisors-hero": {
+    "avif": [
+      [
+        "advisors-hero-480.avif",
+        480
+      ],
+      [
+        "advisors-hero-720.avif",
+        720
+      ],
+      [
+        "advisors-hero-960.avif",
+        960
+      ],
+      [
+        "advisors-hero-1200.avif",
+        1200
+      ],
+      [
+        "advisors-hero-1536.avif",
+        1536
+      ]
+    ],
+    "webp": [
+      [
+        "advisors-hero-480.webp",
+        480
+      ],
+      [
+        "advisors-hero-720.webp",
+        720
+      ],
+      [
+        "advisors-hero-960.webp",
+        960
+      ],
+      [
+        "advisors-hero-1200.webp",
+        1200
+      ],
+      [
+        "advisors-hero-1536.webp",
+        1536
+      ]
+    ],
+    "width": 1536,
+    "height": 1024,
+    "sizes": "(max-width:760px) 112vw, (max-width:1100px) 58vw, (max-width:1300px) 800px, 900px",
+    "fallback": "advisors-hero-960.jpg"
+  },
+  "advisor-walking": {
+    "avif": [
+      [
+        "advisor-walking-480.avif",
+        480
+      ],
+      [
+        "advisor-walking-720.avif",
+        720
+      ],
+      [
+        "advisor-walking-960.avif",
+        960
+      ],
+      [
+        "advisor-walking-1122.avif",
+        1122
+      ]
+    ],
+    "webp": [
+      [
+        "advisor-walking-480.webp",
+        480
+      ],
+      [
+        "advisor-walking-720.webp",
+        720
+      ],
+      [
+        "advisor-walking-960.webp",
+        960
+      ],
+      [
+        "advisor-walking-1122.webp",
+        1122
+      ]
+    ],
+    "width": 1122,
+    "height": 1402,
+    "sizes": "(max-width:760px) min(88vw, 490px), (max-width:1600px) 34vw, 490px",
+    "fallback": "advisor-walking-960.jpg"
+  },
+  "advisor-community": {
+    "avif": [
+      [
+        "advisor-community-480.avif",
+        480
+      ],
+      [
+        "advisor-community-720.avif",
+        720
+      ],
+      [
+        "advisor-community-960.avif",
+        960
+      ],
+      [
+        "advisor-community-1200.avif",
+        1200
+      ],
+      [
+        "advisor-community-1536.avif",
+        1536
+      ]
+    ],
+    "webp": [
+      [
+        "advisor-community-480.webp",
+        480
+      ],
+      [
+        "advisor-community-720.webp",
+        720
+      ],
+      [
+        "advisor-community-960.webp",
+        960
+      ],
+      [
+        "advisor-community-1200.webp",
+        1200
+      ],
+      [
+        "advisor-community-1536.webp",
+        1536
+      ]
+    ],
+    "width": 1536,
+    "height": 1024,
+    "sizes": "(max-width:760px) 103vw, (max-width:1500px) 92vw, 1330px",
+    "fallback": "advisor-community-960.jpg"
+  },
+  "keir-current": {
+    "avif": [
+      [
+        "keir-current-480.avif",
+        480
+      ],
+      [
+        "keir-current-720.avif",
+        720
+      ],
+      [
+        "keir-current-800.avif",
+        800
+      ]
+    ],
+    "webp": [
+      [
+        "keir-current-480.webp",
+        480
+      ],
+      [
+        "keir-current-720.webp",
+        720
+      ],
+      [
+        "keir-current-800.webp",
+        800
+      ]
+    ],
+    "width": 800,
+    "height": 778,
+    "sizes": "(max-width:760px) min(82vw, 380px), (max-width:1600px) 32vw, 470px",
+    "fallback": "keir-current.jpg"
+  },
+  "frends-product": {
+    "avif": [
+      [
+        "frends-product-480.avif",
+        480
+      ],
+      [
+        "frends-product-720.avif",
+        720
+      ],
+      [
+        "frends-product-960.avif",
+        960
+      ],
+      [
+        "frends-product-1128.avif",
+        1128
+      ]
+    ],
+    "webp": [
+      [
+        "frends-product-480.webp",
+        480
+      ],
+      [
+        "frends-product-720.webp",
+        720
+      ],
+      [
+        "frends-product-960.webp",
+        960
+      ],
+      [
+        "frends-product-1128.webp",
+        1128
+      ]
+    ],
+    "width": 1128,
+    "height": 2000,
+    "sizes": "(max-width:420px) 185px, (max-width:760px) 140px, 250px",
+    "fallback": "frends-product-960.jpg"
+  },
+  "open-cans": {
+    "avif": [
+      [
+        "open-cans-480.avif",
+        480
+      ],
+      [
+        "open-cans-720.avif",
+        720
+      ],
+      [
+        "open-cans-960.avif",
+        960
+      ],
+      [
+        "open-cans-1164.avif",
+        1164
+      ]
+    ],
+    "webp": [
+      [
+        "open-cans-480.webp",
+        480
+      ],
+      [
+        "open-cans-720.webp",
+        720
+      ],
+      [
+        "open-cans-960.webp",
+        960
+      ],
+      [
+        "open-cans-1164.webp",
+        1164
+      ]
+    ],
+    "width": 1164,
+    "height": 972,
+    "sizes": "(max-width:420px) 82vw, (max-width:1350px) 40vw, 530px",
+    "fallback": "open-cans-720.png"
+  }
+}

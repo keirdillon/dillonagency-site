@@ -1,0 +1,56 @@
+{
+  "advisors-hero": {
+    "file": "advisors-hero.png",
+    "width": 1536,
+    "height": 1024,
+    "mime": "image/png",
+    "origin": "Generated editorial illustration",
+    "original_filename": "hero.png",
+    "sha256": "003170d81c534c08c3ae10a5c319c0a3e736d635aeab3dcf4da4e2f74662a10c"
+  },
+  "advisor-walking": {
+    "file": "advisor-walking.png",
+    "width": 1122,
+    "height": 1402,
+    "mime": "image/png",
+    "origin": "Generated editorial illustration",
+    "original_filename": "approach.png",
+    "sha256": "06cf631b6bb3db8c2df322bec5e4a0405606da9d66b124683a1603e2935eee30"
+  },
+  "advisor-community": {
+    "file": "advisor-community.png",
+    "width": 1536,
+    "height": 1024,
+    "mime": "image/png",
+    "origin": "Generated editorial illustration",
+    "original_filename": "community.png",
+    "sha256": "1b54edd60871369349ca86a4bd1cf5c714bc5a58b261a2ecaccf0fb31d09f430"
+  },
+  "keir-current": {
+    "file": "keir-current.jpg",
+    "width": 800,
+    "height": 778,
+    "mime": "image/jpeg",
+    "origin": "Keir public website portrait",
+    "original_filename": "keir.jpg",
+    "sha256": "b428077a30b663f1bca0415bd95020fdca0791c0d63ba2623614c4968bbc1608"
+  },
+  "frends-product": {
+    "file": "frends-product.jpg",
+    "width": 1128,
+    "height": 2000,
+    "mime": "image/jpeg",
+    "origin": "User supplied archive",
+    "original_filename": "FRENDS Oilslick GB.jpg",
+    "sha256": "82f7748254be9d15120803ff8f7793d943e8e67314b064fbfebc8a11e48c2d11"
+  },
+  "open-cans": {
+    "file": "open-cans.png",
+    "width": 1164,
+    "height": 972,
+    "mime": "image/png",
+    "origin": "User supplied archive",
+    "original_filename": "OPEN Cans(1).png",
+    "sha256": "43d9533c615751cce709b95df237433a407a4a6119b591d3bde203d5551bf757"
+  }
+}

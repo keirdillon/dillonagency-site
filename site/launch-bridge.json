@@ -1,0 +1,32 @@
+{
+  "why": "KeirDillon.com has not published /about or /tools yet, and Dillon Agency launches first. Until the personal site is live, these three links point at the personal homepage and carry a label that honestly describes where the visitor lands. src/pages.py already holds the final href and label for each one.",
+  "restore": "Set \"active\" to false, rebuild, redeploy. Nothing else needs editing — src/pages.py already holds the final href and label for each link. build.py fails the build if any entry below stops matching, so a stale bridge cannot pass silently, and verify.py --peer-project passes in both states.",
+  "final_destinations": {
+    "{{peer:/about}}": "https://keirdillon.com/about",
+    "{{peer:/tools}}": "https://keirdillon.com/tools"
+  },
+  "active": true,
+  "links": [
+    {
+      "page": "/about/",
+      "final_href": "{{peer:/about}}",
+      "final_label": "Read the full story on Keir’s site",
+      "temporary_href": "{{peer:/}}",
+      "temporary_label": "More on Keir’s background at KeirDillon.com"
+    },
+    {
+      "page": "/selected-work/",
+      "final_href": "{{peer:/about}}",
+      "final_label": "Explore Keir’s full story",
+      "temporary_href": "{{peer:/}}",
+      "temporary_label": "Visit Keir’s personal site"
+    },
+    {
+      "page": "/advisor-marketing/",
+      "final_href": "{{peer:/tools}}",
+      "final_label": "Open Keir’s advisor resources",
+      "temporary_href": "{{peer:/}}",
+      "temporary_label": "Visit Keir’s personal site"
+    }
+  ]
+}
