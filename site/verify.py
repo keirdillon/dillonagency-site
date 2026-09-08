@@ -92,13 +92,30 @@ if (ROOT/'dist-production/sitemap.xml').exists():
  assert 'Disallow: /' not in (ROOT/'dist-production/robots.txt').read_text()
 peer_count=0
 if args.peer_project:
- peer=Path(args.peer_project);cfg=json.loads((peer/'site.json').read_text());routes={p['path'] for p in json.loads((peer/'page-inventory.json').read_text())}
+ peer=Path(args.peer_project);cfg=json.loads((peer/'site.json').read_text())
+ # The two projects publish different trailing-slash styles: page-inventory.json
+ # records build paths ('/about/') while the peer serves and canonicalises the
+ # slash-free form ('/about'). Compare routes by identity, so equivalent URLs
+ # match and only a genuinely absent page fails.
+ def route_key(path):return '/'+(path or '/').strip('/')
+ routes={route_key(x['path']) for x in json.loads((peer/'page-inventory.json').read_text())}
+ # Which form the peer actually serves is decided by its own vercel.json. Match it
+ # so cross-site links never take a redirect hop. Skipped when it cannot be found.
+ peer_slash=None
+ for candidate in (peer/'vercel.json',peer.parent/'vercel.json'):
+  if candidate.exists():peer_slash=json.loads(candidate.read_text()).get('trailingSlash');break
  origins=[cfg['domain'],cfg['review_origin']]
  for file in files:
   for link in Doc(file.read_text()).links:
-   u=urlsplit(link)
-   if u.scheme+'://'+u.netloc in origins:
-    assert u.path in routes,(file,link,'missing peer route');peer_count+=1
+   u=urlsplit(link);origin=u.scheme+'://'+u.netloc
+   if origin in origins:
+    assert route_key(u.path) in routes,(file,link,'missing peer route')
+    # Only the production domain: the review origin is hosted elsewhere and does
+    # not follow the peer project's vercel.json.
+    if peer_slash is not None and origin==cfg['domain'] and u.path not in ('','/'):
+     want='with a trailing slash' if peer_slash else 'without a trailing slash'
+     assert u.path.endswith('/')==bool(peer_slash),(file,link,'peer serves URLs '+want+'; match it to avoid a redirect hop')
+    peer_count+=1
  for name in ['fonts.css','style.css','visual.css','brand.css']:
   assert (ROOT/'src'/name).read_bytes()==(peer/'src'/name).read_bytes(),('design file differs',name)
 report={'status':'passed','brand':S['brand'],'pages':len(list((ROOT/'dist').rglob('*.html'))),'html_files_checked':len(files),'peer_links_checked':peer_count,'production_metadata_checked':(ROOT/'dist-production').exists(),'checks':['Page/control IDs','Local links and assets','Single-file offline embedding','One H1 per published page','Source photo hashes','JavaScript syntax','Review indexing','Production canonicals, sitemap and entity graph when built','Three advisor tool functions for personal site'],'not_tested':['Browser rendering','Mail client launch, clipboard and downloads in a browser','Live search indexing','Existing production-site integrations']}
