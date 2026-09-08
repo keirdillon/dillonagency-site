@@ -7,14 +7,14 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.dillonagency.co"
         }
       ],
-      "destination": "https://dillonagency.co/:path*",
+      "destination": "https://dillonagency.co/$1",
       "permanent": true
     },
     {
