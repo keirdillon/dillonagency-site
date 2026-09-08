@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'src'))
 from pages import PAGES
 SITE=json.loads((ROOT/'site.json').read_text())
+BRIDGE=json.loads((ROOT/'launch-bridge.json').read_text())
 parser=argparse.ArgumentParser()
 parser.add_argument('--production',default='',help='Confirmed HTTPS origin; enables indexing and domain metadata.')
 parser.add_argument('--peer-origin',default='',help='Override the other brand origin for a coordinated preview.')
@@ -40,7 +41,20 @@ def href(id,current=None):
     if current is None:return '#'+id
     rel=posixpath.relpath(file_path(byid[id]),posixpath.dirname(file_path(current)) or '.')
     return rel[:-len('index.html')] or './'
-def peer_tokens(text):return re.sub(r'\{\{peer:(/[a-z0-9/_-]*)\}\}',lambda m:PEER+m.group(1),text)
+BRIDGE_HITS={}
+def bridge(text):
+    # Temporary launch bridge; see launch-bridge.json. Rewrites the handful of
+    # links whose destination is not published on the peer domain yet, label
+    # included, so the wording matches where the visitor actually lands.
+    if not BRIDGE.get('active'):return text
+    for i,link in enumerate(BRIDGE['links']):
+        a='href="'+link['final_href']+'">'+link['final_label']
+        b='href="'+link['temporary_href']+'">'+link['temporary_label']
+        if a in text:
+            BRIDGE_HITS[i]=BRIDGE_HITS.get(i,0)+text.count(a)
+            text=text.replace(a,b)
+    return text
+def peer_tokens(text):return re.sub(r'\{\{peer:(/[a-z0-9/_-]*)\}\}',lambda m:PEER+m.group(1),bridge(text))
 def nav(current=None):
     links=''.join('<a data-nav="'+id+'" href="'+href(id,current)+'"'+(' aria-current="page"' if current and current['id']==id else '')+'>'+label+'</a>' for id,label in SITE['nav'])
     return '<a class="skip" href="#main">Skip to content</a><header class="wrap"><div class="top"><div class="brand-lockup"><a class="wordmark" href="'+href('home',current)+'">'+SITE['brand']+'</a><small>'+SITE['descriptor']+'</small></div><button class="secondary menu-toggle" data-toggle-menu aria-controls="menu" aria-expanded="false">Menu</button><nav class="nav" id="menu" aria-label="Main">'+links+'</nav></div></header>'
@@ -94,8 +108,8 @@ shutil.copytree(ROOT/'src/static',dist,dirs_exist_ok=True)
 for p in PAGES:
     out=dist/file_path(p);out.parent.mkdir(parents=True,exist_ok=True);prefix=posixpath.relpath('assets',posixpath.dirname(file_path(p)) or '.')
     top=root_prefix(p)
-    extra=('<link rel="preload" as="font" type="font/woff2" href="'+prefix+'/fonts/DMSans-400.woff2" crossorigin>'
-        '<link rel="preload" as="font" type="font/woff2" href="'+prefix+'/fonts/InstrumentSerif-400.woff2" crossorigin>'
+    extra=('<link rel="preload" as="font" type="font/woff2" href="'+prefix+'/fonts/dm-sans-400.woff2" crossorigin>'
+        '<link rel="preload" as="font" type="font/woff2" href="'+prefix+'/fonts/instrument-serif-400.woff2" crossorigin>'
         '<link rel="stylesheet" href="'+prefix+'/style.css">'
         '<link rel="icon" href="'+top+'/favicon.svg" type="image/svg+xml">'
         '<link rel="icon" href="'+top+'/favicon-32.png" sizes="32x32">'
@@ -106,6 +120,9 @@ for p in PAGES:
     else:extra+='<meta name="robots" content="noindex,nofollow">'
     doc=head(p['title'] if SITE['brand'] in p['title'] else p['title']+' | '+SITE['brand'],p['description'],extra)+'<body data-mode="multi" data-brand="'+SITE['brand']+'">'+('' if PRODUCTION else '<div class="review-band">'+SITE['brand']+' / Website review · September 2026</div>')+nav(p)+'<main class="wrap" id="main">'+render_body(p,p)+'</main>'+footer(p)+'<script src="'+prefix+'/site.js"></script></body></html>'
     out.write_text(doc)
+if BRIDGE.get('active'):
+    stale=[l['page'] for i,l in enumerate(BRIDGE['links']) if not BRIDGE_HITS.get(i)]
+    if stale:raise SystemExit('launch-bridge.json no longer matches pages.py for: '+', '.join(stale))
 if PRODUCTION:
     (dist/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+OWN+'/sitemap.xml\n')
     (dist/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+OWN+p['path']+'</loc></url>' for p in PAGES)+'</urlset>')

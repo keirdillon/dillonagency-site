@@ -73,6 +73,16 @@ cd site/tools && npm install && npm run prepare-assets
 Masters in `src/assets/` are never modified — `verify.py` fails if their hashes
 change. Measured results are recorded in `site/asset-report.json`.
 
+## Temporary launch bridge
+
+`site/launch-bridge.json` holds three links whose real destination is not live
+yet. Dillon Agency launches before KeirDillon.com, so until the personal site
+ships `/about` and `/tools`, those links point at `https://keirdillon.com/` and
+carry a label that matches where the visitor actually lands. `src/pages.py`
+already holds the final href and label; set `"active": false` and rebuild to
+restore them. The build fails if an entry stops matching, so the bridge cannot
+go stale unnoticed.
+
 ## Contact
 
 `keir@dillonagency.co` on both sites. The contact page opens the visitor's mail

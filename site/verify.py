@@ -12,12 +12,13 @@ S=json.loads((ROOT/'site.json').read_text())
 parser=argparse.ArgumentParser();parser.add_argument('--peer-project');args=parser.parse_args()
 class Doc(HTMLParser):
  def __init__(self,text):
-  super().__init__();self.ids=[];self.links=[];self.targets=[];self.assets=[];self.images=[];self.scripts=[];self.schemas=[];self.script=None;self.script_type=None;self.h1=0;self.canonical=[];self.robots=[];self.feed(text)
+  super().__init__();self.ids=[];self.links=[];self.targets=[];self.assets=[];self.images=[];self.scripts=[];self.schemas=[];self.script=None;self.script_type=None;self.h1=0;self.canonical=[];self.robots=[];self.anchors=[];self.anchor=None;self.anchor_text='';self.feed(text)
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
   if a.get('id'):self.ids.append(a['id'])
   if tag=='h1':self.h1+=1
   if tag in ('a','link') and a.get('href'):self.links.append(a['href'])
+  if tag=='a' and a.get('href'):self.anchor=a['href'];self.anchor_text=''
   if tag=='link' and a.get('rel')=='canonical':self.canonical.append(a['href'])
   if tag=='meta' and a.get('name')=='robots':self.robots.append(a.get('content',''))
   for k in ['data-copy','data-download','data-example','data-output','data-go','aria-controls','aria-labelledby','for']:
@@ -28,7 +29,9 @@ class Doc(HTMLParser):
   if tag=='script' and not a.get('src'):self.script='';self.script_type=a.get('type','')
  def handle_data(self,data):
   if self.script is not None:self.script+=data
+  if self.anchor is not None:self.anchor_text+=data
  def handle_endtag(self,tag):
+  if tag=='a' and self.anchor is not None:self.anchors.append((self.anchor,' '.join(self.anchor_text.split())));self.anchor=None
   if tag=='script' and self.script is not None:
    (self.schemas if self.script_type=='application/ld+json' else self.scripts).append(self.script);self.script=None
 
@@ -46,6 +49,10 @@ for file in files:
   assert target.exists(),(file,link,'missing local file')
   if u.fragment and target.suffix=='.html':assert u.fragment in Doc(target.read_text()).ids,(file,link,'missing anchor')
  for a in doc.images:assert a.get('alt') and a.get('width') and a.get('height'),(file,'image lacks accessible description or dimensions')
+ if file.name!=S['standalone']:
+  # The standalone review concatenates every page, so repeats are expected there.
+  dupes=[x for x,n in Counter(doc.anchors).items() if n>1 and x[0].startswith('http')]
+  assert not dupes,(file,'duplicate outbound link (same href and label)',dupes)
  for code in doc.scripts:
   with tempfile.NamedTemporaryFile(suffix='.js',mode='w') as t:
    t.write(code);t.flush();subprocess.run(['node','--check',t.name],check=True,capture_output=True)
